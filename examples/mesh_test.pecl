@@ -1,0 +1,45 @@
+# mesh_test.pecl - renders the diablo3_pose.obj model from tinyrenderer.
+# A 3D character model, ~2500 verts, ~5000 faces. tests the mesh loader.
+# Should look like a standing humanoid figure.
+
+bg: <10, 12, 16>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1.5, -3>
+  aim: <0, 1, 0>
+  up:  <0, 1, 0>
+  fov: 40
+}
+
+# ground
+mat { clr: <25, 25, 30> }
+plane { pos: <0, 0, 0>, nrm: <0, 1, 0> }
+
+# the mesh itself. fit to ~2 units tall, place at origin.
+mat { clr: <75, 75, 80>, spc: 15, shn: 32 }
+mesh {
+  file:  examples/models/diablo3_pose.obj
+  scale: 2.0
+  pos:   <0, 0, 0>
+}
+
+# key light from upper right
+light {
+  type: point
+  pos:  <3, 4, -3>
+  clr:  <100, 100, 95>
+}
+
+# fill from upper left
+light {
+  type: point
+  pos:  <-3, 3, -2>
+  clr:  <40, 40, 55>
+}
+
+render {
+  size: 512 640
+  spp: 2
+  depth: 4
+}

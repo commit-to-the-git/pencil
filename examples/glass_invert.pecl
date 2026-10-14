@@ -1,0 +1,39 @@
+# glass_invert.pecl - test that clearly shows refraction inversion.
+# a checkerboard-textured back wall behind a glass sphere.
+# looking through the sphere, the checker pattern should be UPSIDE DOWN.
+
+bg: <10, 10, 15>
+amb: <10, 10, 12>
+
+cmra {
+  pos: <0, 0, -4>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 45
+}
+
+# checkerboard back wall, 4 units behind the sphere.
+# this gives a clear pattern to check inversion.
+mat { clr: <100, 100, 100>, tex: examples/textures/checker.png }
+plane { pos: <0, 0, 3>, nrm: <0, 0, -1> }
+
+# floor with stripes (also visible through the sphere)
+mat { clr: <100, 100, 100>, tex: examples/textures/stripes.png }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# glass sphere - should invert the checkerboard behind it
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <3, 3, -3>
+  clr:  <100, 100, 100>
+  radius: 0.3
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 10
+}

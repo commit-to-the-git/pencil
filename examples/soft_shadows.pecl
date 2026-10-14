@@ -1,0 +1,32 @@
+# soft_shadows.pecl - soft shadows demo.
+# a single sphere on a plane under a point light with radius 0.8.
+# the shadow should fade smoothly from black at the center to light at the edges.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 2, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+mat { clr: <100, 60, 30>, spc: 30, shn: 64 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <2, 5, -2>
+  clr:  <100, 100, 95>
+  radius: 1.0
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 6
+}

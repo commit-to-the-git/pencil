@@ -1,0 +1,34 @@
+# proc_textures.pecl - procedural texture demo.
+# sphere with procedural marble, plane with procedural checker.
+# no image files needed - textures are generated mathematically.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0, -4>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# procedural checker plane
+mat { clr: <100, 100, 100>, tex: procedural { type: checker, scale: 3, c1: <90, 90, 95>, c2: <30, 30, 35> } }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# procedural marble sphere
+mat { clr: <100, 100, 100>, tex: procedural { type: marble, scale: 4, c1: <90, 80, 60>, c2: <40, 30, 20> }, spc: 20, shn: 32 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.3
+}
+
+render {
+  size: 480 360
+  spp: 2
+  depth: 4
+}

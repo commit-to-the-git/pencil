@@ -1,0 +1,50 @@
+# beauty.pecl - a beautiful render with soft shadows
+# glass + chrome + diffuse spheres on a checkered floor
+
+bg: <8, 10, 15>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1.5, -6>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 45
+}
+
+# checkered floor
+mat { clr: <60, 60, 65> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# left: glass sphere
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <-1.5, 0, 0>, rad: 0.8 }
+
+# center: chrome metal sphere
+mat { clr: <90, 90, 95>, typ: principled, metallic: 1.0, rough: 0.05 }
+sphere { pos: <0, 0, 0.5>, rad: 0.8 }
+
+# right: warm diffuse sphere
+mat { clr: <80, 40, 20>, typ: principled, metallic: 0.0, rough: 0.3, clearcoat: 0.8, cc_gloss: 0.9 }
+sphere { pos: <1.5, 0, 0>, rad: 0.8 }
+
+# large area light for soft shadows
+light {
+  type: point
+  pos:  <2, 5, -3>
+  clr:  <100, 95, 80>
+  radius: 1.5
+}
+
+# fill light (dimmer)
+light {
+  type: point
+  pos:  <-3, 3, -2>
+  clr:  <30, 30, 50>
+  radius: 0
+}
+
+render {
+  size: 1920 1080
+  spp: 4
+  depth: 8
+}

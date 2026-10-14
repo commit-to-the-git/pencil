@@ -1,0 +1,31 @@
+# emissive.pecl - emissive sphere test.
+# a glowing sphere with no lights in the scene — the sphere IS the light.
+# should illuminate the surrounding plane and cast soft shadows.
+
+bg: <3, 3, 5>
+amb: <2, 2, 3>
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# ground plane
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# emissive sphere - glows on its own, emits light
+mat { clr: <0, 0, 0>, emt: <200, 150, 50> }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+# no lights! the sphere is the only light source.
+# pencil's renderer will still shade the plane using the emissive
+# material's emission as a light contribution.
+
+render {
+  size: 480 360
+  spp: 4
+  depth: 4
+}

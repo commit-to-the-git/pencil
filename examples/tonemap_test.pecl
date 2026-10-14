@@ -1,0 +1,33 @@
+# tonemap_test.pecl - tone mapping comparison.
+# a bright emissive sphere that would clip to white without tone mapping.
+# render with --tonemap 0 (none) vs --tonemap 1 (ACES, default).
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0, -4>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# very bright emissive sphere (would clip without tone mapping)
+mat { clr: <0, 0, 0>, emt: <500, 400, 200> }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <3, 3, -3>
+  clr:  <30, 30, 30>
+  radius: 0
+}
+
+render {
+  size: 480 360
+  spp: 2
+  depth: 4
+}

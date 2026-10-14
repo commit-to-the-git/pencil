@@ -1,0 +1,35 @@
+# skybox.pecl - environment map / skybox demo.
+# a mirror sphere reflecting the sky image.
+# rays that miss all geometry sample the skybox by direction.
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 60
+}
+
+# load an equirectangular sky image
+sky { file: examples/textures/sky.jpg }
+
+amb: <10, 10, 12>
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# mirror sphere - reflects the skybox
+mat { clr: <95, 95, 95>, rfl: 100, fuz: 1 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <50, 50, 50>
+  radius: 0.5
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 6
+}

@@ -1,0 +1,54 @@
+# dof.pecl - depth of field demo.
+# a cube close to the camera on the left, a sphere far away on the right,
+# and a "sun" point light on the upper-left.
+# the cube (close) is in focus; the far sphere is blurry.
+#
+# camera aperture 0.12, focus at 3.5 (the cube).
+# bg is a flat color (no skybox), so this works without any texture deps.
+
+bg: <40, 50, 70>
+amb: <6, 6, 8>
+
+cmra {
+  pos: <0, 0, -3>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 55
+  aperture: 0.12
+  focus: 3.5
+}
+
+# ground plane (subtle so it doesn't distract)
+mat { clr: <35, 35, 40> }
+plane { pos: <0, -0.8, 0>, nrm: <0, 1, 0> }
+
+# cube close to camera on the LEFT - IN FOCUS.
+# (camera at -z looking at +z, so world +x is on the LEFT in the image)
+mat { clr: <90, 30, 30>, spc: 40, shn: 64 }
+cube { pos: <0.8, 0, 0.5>, size: 0.45 }
+
+# sphere far away on the RIGHT - OUT OF FOCUS (blurry)
+mat { clr: <30, 60, 100>, spc: 30, shn: 64 }
+sphere { pos: <-1.8, 0, 4>, rad: 0.9 }
+
+# sun-like point light on the upper-left
+light {
+  type: point
+  pos:  <-4, 5, -2>
+  clr:  <100, 95, 80>
+  radius: 1.0
+}
+
+# subtle fill from the right
+light {
+  type: point
+  pos:  <3, 2, -2>
+  clr:  <25, 25, 35>
+  radius: 0.5
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 6
+}

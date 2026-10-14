@@ -1,0 +1,37 @@
+# bloom.pecl - bloom post-process demo.
+# an emissive cube (bright white) and a normal sphere, rendered with --bloom.
+# the bright pixels should glow softly into surrounding areas.
+
+bg: <2, 2, 3>
+amb: <3, 3, 4>
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# emissive cube - should bloom
+mat { clr: <0, 0, 0>, emt: <300, 300, 300> }
+cube { pos: <-1.2, 0, 0>, size: 0.5 }
+
+# normal diffuse sphere for comparison
+mat { clr: <80, 30, 30>, spc: 20, shn: 32 }
+sphere { pos: <1.2, 0, 0>, rad: 0.6 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <60, 60, 60>
+  radius: 0.5
+}
+
+render {
+  size: 640 480
+  spp: 2
+  depth: 4
+}

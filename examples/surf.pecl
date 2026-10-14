@@ -1,0 +1,81 @@
+# surf.pecl - Demonstrates the `surf { func: ... }` block, which lets you
+# render any implicit surface defined by f(x, y, z) = 0.
+#
+# Three classic shapes, all defined purely by math:
+#
+#   * A sphere:    x^2 + y^2 + z^2 - 1 = 0
+#   * A torus:     (sqrt(x^2 + z^2) - 1.5)^2 + y^2 - 0.5^2 = 0
+#   * A blob:      the sum of three point potentials minus a threshold.
+
+bg: <8, 10, 14>
+amb: <6, 6, 8>
+
+cmra {
+  pos: <0, 2, -6>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# Ground plane.
+mat { clr: <40, 40, 45> }
+plane {
+  pos: <0, -1, 0>
+  nrm: <0, 1, 0>
+}
+
+# Sphere as an implicit surface: x*x + y*y + z*z - 1 = 0
+mat { clr: <80, 20, 20>, spc: 40, shn: 64 }
+surf {
+  func { x*x + y*y + z*z - 1 }
+  min:  <-1.5, -1.5, -1.5>
+  max:  <1.5, 1.5, 1.5>
+}
+
+# Torus lying flat: revolve a circle of radius 0.5 around the y axis at
+# distance 1.5 from it.
+mat { clr: <20, 80, 80>, spc: 40, shn: 64 }
+surf {
+  func {
+    (sqrt(x*x + z*z) - 1.5) * (sqrt(x*x + z*z) - 1.5) + y*y - 0.25
+  }
+  min: <-2.5, -1, -2.5>
+  max: <2.5, 1, 2.5>
+  steps: 400
+}
+
+# Three-point blob: a "metaball"-style surface from sum of inverse-distance
+# potentials. Each center contributes 1/r^2; surface where sum = 4.
+mat { clr: <80, 80, 20>, spc: 30, shn: 32 }
+surf {
+  func {
+    1 / ((x+0.6)*(x+0.6) + y*y + z*z)
+    + 1 / ((x-0.6)*(x-0.6) + y*y + z*z)
+    + 1 / (x*x + (y-0.7)*(y-0.7) + z*z)
+    - 4
+  }
+  min: <-2, -2, -2>
+  max: <2, 2, 2>
+  steps: 400
+  step: 0.015
+}
+
+# Key light.
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+}
+
+# Soft fill.
+light {
+  type: point
+  pos:  <-4, 4, -3>
+  clr:  <25, 25, 35>
+}
+
+render {
+  size: 640 480
+  spp: 2
+  depth: 6
+}

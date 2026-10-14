@@ -1,0 +1,28 @@
+# mesh_bench.pecl - smaller mesh for benchmarking BVH vs no-BVH.
+# uses african_head.obj, ~1250 verts, ~2500 faces.
+
+bg: <10, 12, 16>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0.5, -2>
+  aim: <0, 0.3, 0>
+  up:  <0, 1, 0>
+  fov: 30
+}
+
+mat { clr: <75, 75, 80>, spc: 15, shn: 32 }
+mesh {
+  file:  examples/models/african_head.obj
+  scale: 1.5
+  pos:   <0, 0, 0>
+}
+
+light { type: point, pos: <2, 3, -2>, clr: <100, 100, 95> }
+light { type: point, pos: <-2, 2, -1>, clr: <40, 40, 55> }
+
+render {
+  size: 320 400
+  spp: 1
+  depth: 2
+}

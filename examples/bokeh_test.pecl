@@ -1,0 +1,42 @@
+# bokeh_test.pecl - bokeh aperture shapes.
+# render with --bokeh 6 (hexagon) to see shaped bokeh in the blur.
+# out-of-focus highlights will appear as hexagons instead of circles.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0, -3>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+  aperture: 0.3
+  focus: 3.0
+  bd: 6
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# small bright spheres far away (out of focus = bokeh shapes)
+mat { clr: <0, 0, 0>, emt: <200, 200, 200> }
+sphere { pos: <-2, 0, 5>, rad: 0.2 }
+sphere { pos: <0, 0, 5>, rad: 0.2 }
+sphere { pos: <2, 0, 5>, rad: 0.2 }
+sphere { pos: <-1, 1, 6>, rad: 0.2 }
+sphere { pos: <1, 1, 6>, rad: 0.2 }
+sphere { pos: <-1, -0.5, 4>, rad: 0.2 }
+sphere { pos: <1, -0.5, 4>, rad: 0.2 }
+
+light {
+  type: point
+  pos:  <3, 3, -3>
+  clr:  <50, 50, 50>
+  radius: 0
+}
+
+render {
+  size: 480 360
+  spp: 4
+  depth: 4
+}

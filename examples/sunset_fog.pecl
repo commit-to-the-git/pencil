@@ -1,0 +1,45 @@
+# sunset_fog.pecl - sunset scene with gradient fog.
+# fog goes from warm orange at bottom to cool blue at top.
+# with god rays, the setting sun casts light shafts through the mist.
+
+bg: <30, 40, 70>
+amb: <10, 10, 15>
+
+fog {
+  density: 0.05
+  color: <80, 50, 20>
+  clr_top: <40, 50, 90>
+  grad_min: -2
+  grad_max: 8
+}
+
+cmra {
+  pos: <0, 1, -8>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 55
+}
+
+mat { clr: <20, 20, 25> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# dark silhouettes
+mat { clr: <8, 8, 10> }
+cube { pos: <-3, 1, 2>, size: 1 }
+cube { pos: <3, 1, 2>, size: 1 }
+cube { pos: <-1.5, 0.5, 3>, size: 0.5 }
+cube { pos: <1.5, 0.5, 3>, size: 0.5 }
+
+# sun (warm, low)
+light {
+  type: point
+  pos:  <0, 3, 5>
+  clr:  <120, 80, 40>
+  radius: 0.5
+}
+
+render {
+  size: 640 360
+  spp: 2
+  depth: 4
+}

@@ -1,0 +1,53 @@
+# caustics_cool.pecl - gently diagonal side-lit caustic render
+# render with: pencil --caustics caustics_cool.pecl out.png
+#
+# camera is at y=3 looking at the orb at y=0, which gives a ~31°
+# downward viewing angle - a gentle diagonal instead of straight down.
+# the floor fills most of the lower frame; the orb sits roughly at
+# frame center.
+#
+# the light is placed at world +X (which appears on the LEFT of the
+# rendered image, due to pencil's left-handed screen convention) and
+# pulled close to the orb (distance ~6.7 from orb center). it sits
+# outside the camera's frame (~75° off camera-forward, vs the frame
+# corner at ~43°), so the orb casts a shadow that goes RIGHT and
+# slightly UP the frame (the +z of the shadow lands reads as "up"
+# in screen space because the camera is tilted down).
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 3, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# floor
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# glass sphere - focuses the side light into a caustic on the floor
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+# bright point light to the LEFT of the camera (world +X), pulled
+# close to the orb (distance ~5.5 from orb center) and lowered to
+# y=1 so it's just above the orb's horizontal plane. stays outside
+# the camera's frame (~54° off camera-forward, vs the frame corner
+# at ~44°). the lower / closer light makes the orb's cast shadow
+# land further to the right and at a slightly smaller upward angle
+# (~2° above horizontal, vs ~4° with the higher/farther light).
+light {
+  type: point
+  pos:  <5, 1, -2>
+  clr:  <100, 100, 95>
+  radius: 0
+}
+
+render {
+  size: 1920 1080
+  spp: 4
+  depth: 6
+}

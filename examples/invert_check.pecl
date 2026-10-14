@@ -1,0 +1,51 @@
+# invert_check.pecl - definitive refraction inversion test.
+# the back wall has a sharp horizontal split:
+#   top half = pure white
+#   bottom half = pure black
+# through a glass sphere, this should be INVERTED:
+#   top of sphere shows black, bottom shows white.
+
+bg: <5, 5, 5>
+amb: <10, 10, 10>
+
+cmra {
+  pos: <0, 0, -4>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 45
+}
+
+# top half of back wall - bright white
+mat { clr: <100, 100, 100>, emt: <100, 100, 100> }
+quad {
+  a: <-3, 0, 3>
+  b: <3, 0, 3>
+  c: <3, 3, 3>
+  d: <-3, 3, 3>
+}
+
+# bottom half of back wall - pure black
+mat { clr: <0, 0, 0> }
+quad {
+  a: <-3, -3, 3>
+  b: <3, -3, 3>
+  c: <3, 0, 3>
+  d: <-3, 0, 3>
+}
+
+# glass sphere in front - should invert the wall behind it
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <3, 3, -3>
+  clr:  <30, 30, 30>
+  radius: 0
+}
+
+render {
+  size: 480 480
+  spp: 4
+  depth: 12
+}

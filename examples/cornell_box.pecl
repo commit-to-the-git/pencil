@@ -1,0 +1,92 @@
+# cornell_box.pecl - A tiny Cornell-style box.
+# Demonstrates emissive panel, multiple colored walls, sphere + cube + triangle.
+
+bg: <0, 0, 0>
+amb: <2, 2, 2>
+
+cmra {
+  pos: <0, 2.5, -5.5>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 60
+}
+
+# Left wall (red).
+mat { clr: <65, 5, 5> }
+quad {
+  a: <-2, 0, -2>
+  b: <-2, 0, 2>
+  c: <-2, 3, 2>
+  d: <-2, 3, -2>
+}
+
+# Right wall (green).
+mat { clr: <5, 55, 5> }
+quad {
+  a: <2, 0, -2>
+  b: <2, 0, 2>
+  c: <2, 3, 2>
+  d: <2, 3, -2>
+}
+
+# Back wall (white).
+mat { clr: <85, 85, 85> }
+quad {
+  a: <-2, 0, 2>
+  b: <2, 0, 2>
+  c: <2, 3, 2>
+  d: <-2, 3, 2>
+}
+
+# Floor.
+mat { clr: <70, 70, 70> }
+quad {
+  a: <-2, 0, -2>
+  b: <2, 0, -2>
+  c: <2, 0, 2>
+  d: <-2, 0, 2>
+}
+
+# Emissive ceiling panel.
+mat { clr: <0, 0, 0>, emt: <400, 400, 400> }
+quad {
+  a: <-1, 2.99, -1>
+  b: <1, 2.99, -1>
+  c: <1, 2.99, 1>
+  d: <-1, 2.99, 1>
+}
+
+# A real point light at the panel to actually illuminate the scene.
+light {
+  type: point
+  pos:  <0, 2.9, 0>
+  clr:  <150, 150, 150>
+}
+
+# Diffuse sphere in the middle.
+mat { clr: <80, 60, 20>, spc: 30, shn: 64 }
+sphere {
+  pos: <-0.6, 0.4, 0>
+  rad: 0.4
+}
+
+# Cube on the right (axis-aligned, slab-test).
+mat { clr: <90, 90, 90>, rfl: 50, fuz: 5 }
+cube {
+  pos: <0.7, 0.4, 0.2>
+  size: 0.4
+}
+
+# Single triangle accent.
+mat { clr: <20, 30, 80> }
+tri {
+  v0: <0, 0, -1.5>
+  v1: <0.6, 0, -1.5>
+  v2: <0.3, 0.5, -1.5>
+}
+
+render {
+  size: 512 512
+  spp: 4
+  depth: 6
+}

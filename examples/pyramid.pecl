@@ -1,0 +1,62 @@
+# pyramid.pecl - A pyramid (4 triangles) on a ground plane, lit by sun.
+# Demonstrates directional light + triangles + Phong shading.
+
+bg: <55, 70, 90>
+amb: <12, 12, 15>
+
+cmra {
+  pos: <4, 4, -6>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# Sand-colored ground (infinite plane).
+mat { clr: <55, 50, 40>, spc: 5, shn: 8 }
+plane {
+  pos: <0, 0, 0>
+  nrm: <0, 1, 0>
+}
+
+# Pyramid body (4 triangles, apex at (0, 2, 0)).
+mat { clr: <85, 70, 45>, spc: 40, shn: 64 }
+tri {
+  v0: <1.5, 0, 1.5>
+  v1: <-1.5, 0, 1.5>
+  v2: <0, 2, 0>
+}
+tri {
+  v0: <-1.5, 0, 1.5>
+  v1: <-1.5, 0, -1.5>
+  v2: <0, 2, 0>
+}
+tri {
+  v0: <-1.5, 0, -1.5>
+  v1: <1.5, 0, -1.5>
+  v2: <0, 2, 0>
+}
+tri {
+  v0: <1.5, 0, -1.5>
+  v1: <1.5, 0, 1.5>
+  v2: <0, 2, 0>
+}
+
+# Sun (directional).
+light {
+  type: directional
+  dir:  <-0.5, -0.6, -0.4>
+  clr:  <140, 130, 100>
+}
+
+# Soft sky fill (point).
+light {
+  type: point
+  pos:  <0, 8, 0>
+  clr:  <15, 15, 20>
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 4
+}

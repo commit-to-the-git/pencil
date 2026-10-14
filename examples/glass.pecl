@@ -1,0 +1,52 @@
+# glass.pecl - Two glass spheres + colored background, showcasing refraction.
+
+bg: <10, 40, 70>
+amb: <5, 5, 5>
+
+cmra {
+  pos: <0, 0, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 45
+}
+
+# Glass sphere #1.
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere {
+  pos: <-1, 0, 0>
+  rad: 1
+}
+
+# Glass sphere #2 with slight tint.
+mat { clr: <95, 100, 100>, ior: 1.5 }
+sphere {
+  pos: <1, 0, 0>
+  rad: 1
+}
+
+# Back wall with checker-ish color.
+mat { clr: <90, 90, 90>, spc: 20, shn: 32 }
+quad {
+  a: <-4, -2, 3>
+  b: <4, -2, 3>
+  c: <4, 2, 3>
+  d: <-4, 2, 3>
+}
+
+# Lights.
+light {
+  type: point
+  pos:  <-3, 3, -5>
+  clr:  <100, 100, 100>
+}
+light {
+  type: point
+  pos:  <3, 3, -5>
+  clr:  <50, 40, 60>
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 10
+}

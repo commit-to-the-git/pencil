@@ -1,0 +1,66 @@
+# shapes.pecl - showcases all primitive types: sphere, cube, plane,
+# cylinder, cone, and a mesh loaded from an obj file.
+
+bg: <8, 10, 14>
+amb: <6, 6, 8>
+
+cmra {
+  pos: <6, 4, -8>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# ground
+mat { clr: <40, 40, 45>, spc: 5, shn: 16 }
+plane { pos: <0, 0, 0>, nrm: <0, 1, 0> }
+
+# red sphere
+mat { clr: <80, 20, 20>, spc: 30, shn: 64 }
+sphere { pos: <-2.5, 0.7, 0>, rad: 0.7 }
+
+# green cube
+mat { clr: <20, 70, 30>, spc: 20, shn: 32 }
+cube { pos: <-1, 0.5, 0>, size: 0.5 }
+
+# blue cylinder (vertical)
+mat { clr: <30, 50, 90>, spc: 30, shn: 64 }
+cylinder {
+  pos: <0, 0.8, 0>
+  ax:  <0, 1, 0>
+  rad: 0.4
+  h:   1.6
+}
+
+# yellow cone (pointing up)
+mat { clr: <90, 80, 20>, spc: 30, shn: 64 }
+cone {
+  apex: <1.5, 1.6, 0>
+  ax:   <0, 1, 0>
+  rad:  0.5
+  h:    1.6
+}
+
+# mirror sphere
+mat { clr: <90, 90, 95>, rfl: 90, fuz: 2 }
+sphere { pos: <3, 0.5, 0>, rad: 0.5 }
+
+# key light
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+}
+
+# fill
+light {
+  type: point
+  pos:  <-4, 4, -3>
+  clr:  <30, 30, 45>
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 6
+}

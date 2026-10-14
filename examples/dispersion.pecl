@@ -1,0 +1,34 @@
+# dispersion.pecl - refraction dispersion demo.
+# a glass sphere with refdis: 1 (refraction dispersion on).
+# R/G/B refract at slightly different IORs, creating subtle rainbow fringes
+# at the edges of the glass sphere.
+
+bg: <30, 60, 100>
+amb: <5, 5, 5>
+
+cmra {
+  pos: <0, 0, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <40, 40, 45> }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# glass sphere with dispersion on (rainbow prism effect)
+mat { clr: <100, 100, 100>, ior: 1.5, refdis: 1 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <-3, 2, -4>
+  clr:  <100, 100, 100>
+  radius: 0
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 10
+}

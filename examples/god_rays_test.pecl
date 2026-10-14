@@ -1,0 +1,41 @@
+# god_rays_test.pecl - volumetric god rays through fog.
+# a bright light shines through fog, creating visible light shafts.
+
+bg: <2, 2, 4>
+amb: <1, 1, 2>
+
+fog {
+  density: 0.12
+  color: <20, 25, 35>
+}
+
+cmra {
+  pos: <0, 2, -8>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 55
+}
+
+mat { clr: <15, 15, 18> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# dark pillars to create light shafts
+mat { clr: <10, 10, 12> }
+cube { pos: <-2, 1, 0>, size: 0.8 }
+cube { pos: <2, 1, 0>, size: 0.8 }
+cube { pos: <-1, 0.5, -2>, size: 0.5 }
+cube { pos: <1, 0.5, -2>, size: 0.5 }
+
+# bright point light high up - will create god rays through the fog
+light {
+  type: point
+  pos:  <0, 6, -3>
+  clr:  <150, 140, 100>
+  radius: 0.3
+}
+
+render {
+  size: 640 360
+  spp: 2
+  depth: 4
+}

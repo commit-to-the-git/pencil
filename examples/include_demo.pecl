@@ -1,0 +1,35 @@
+# include_demo.pecl - tests the include directive.
+# pulls in shared material from common_mat.pecl, then uses it on a sphere.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# include AFTER floor material so the included purple material is "current"
+# when the sphere is parsed.
+include { file: examples/common_mat.pecl }
+
+# uses the purple material from common_mat.pecl
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.5
+}
+
+render {
+  size: 480 360
+  spp: 2
+  depth: 4
+}

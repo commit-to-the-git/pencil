@@ -1,0 +1,42 @@
+# red_fog_orb.pecl - red fog with glowing orb (eerie but red).
+# a glowing orb in thick red fog. god rays should create
+# visible light shafts through the fog around the orb.
+# 720p render.
+
+bg: <3, 0, 0>
+amb: <2, 0, 0>
+
+fog {
+  density: 0.12
+  color: <80, 5, 5>
+}
+
+cmra {
+  pos: <0, 1.5, -8>
+  aim: <0, 1, 2>
+  up:  <0, 1, 0>
+  fov: 55
+}
+
+# dark ground
+mat { clr: <10, 5, 5> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# glowing emissive orb in the distance
+mat { clr: <0, 0, 0>, emt: <300, 280, 200> }
+sphere { pos: <0, 1.5, 4>, rad: 0.7 }
+
+# dark pillars to create occluders for god ray shafts
+mat { clr: <8, 3, 3> }
+cube { pos: <-2.5, 1, 1>, size: 0.6 }
+cube { pos: <2.5, 1, 1>, size: 0.6 }
+cube { pos: <-1.5, 0.5, 0>, size: 0.4 }
+cube { pos: <1.5, 0.5, 0>, size: 0.4 }
+cube { pos: <-4, 2, 3>, size: 1.0 }
+cube { pos: <4, 2, 3>, size: 1.0 }
+
+render {
+  size: 1280 720
+  spp: 2
+  depth: 6
+}

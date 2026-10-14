@@ -1,0 +1,65 @@
+# orbit.pecl - camera orbit animation test.
+# the camera orbits around a glass sphere on a plane.
+# 60 frames at 30 fps = 2 second animation.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1.5, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+  anim {
+    kf {
+      f: 1
+      p: <0, 1.5, -5>
+    }
+    kf {
+      f: 15
+      p: <5, 1.5, 0>
+    }
+    kf {
+      f: 30
+      p: <0, 1.5, 5>
+    }
+    kf {
+      f: 45
+      p: <-5, 1.5, 0>
+    }
+    kf {
+      f: 60
+      p: <0, 1.5, -5>
+    }
+  }
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# red diffuse sphere
+mat { clr: <80, 15, 15>, spc: 30, shn: 64 }
+sphere { pos: <-1.2, 0, 0>, rad: 1 }
+
+# glass sphere
+mat { clr: <95, 97, 100>, ior: 1.5 }
+sphere { pos: <1.2, 0, 0>, rad: 1 }
+
+# mirror sphere on top
+mat { clr: <95, 95, 95>, rfl: 100, fuz: 2 }
+sphere { pos: <0, 1.6, 0>, rad: 0.5 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.5
+}
+
+render {
+  size: 320 240
+  spp: 2
+  depth: 6
+  fps: 30
+  frames: 60
+}

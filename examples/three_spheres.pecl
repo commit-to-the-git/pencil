@@ -1,0 +1,75 @@
+# three_spheres.pecl - The classic "three spheres on a plane" demo.
+# Uses Pencil's new v2 .pecl syntax.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1.5, -6>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 55
+}
+
+# Floor (infinite plane, mid-gray with mild specular).
+mat {
+  clr: <50, 50, 55>
+  spc: 10
+  shn: 16
+}
+plane {
+  pos: <0, -1, 0>
+  nrm: <0, 1, 0>
+}
+
+# Big red diffuse sphere.
+mat {
+  clr: <70, 15, 15>
+  spc: 30
+  shn: 64
+}
+sphere {
+  pos: <-1.2, 0, 0>
+  rad: 1
+}
+
+# Glass sphere (ior overrides material kind to dielectric).
+mat {
+  clr: <95, 97, 100>
+  ior: 1.5
+}
+sphere {
+  pos: <1.2, 0, 0>
+  rad: 1
+}
+
+# Mirror sphere on top.
+mat {
+  clr: <95, 95, 95>
+  rfl: 100
+  fuz: 2
+}
+sphere {
+  pos: <0, 1.6, 0>
+  rad: 0.5
+}
+
+# Key light (warm).
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+}
+
+# Fill light (cool).
+light {
+  type: point
+  pos:  <-4, 3, -3>
+  clr:  <30, 30, 45>
+}
+
+render {
+  size: 640 480
+  spp: 4
+  depth: 8
+}

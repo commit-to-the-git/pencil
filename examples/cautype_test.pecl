@@ -1,0 +1,9 @@
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+cmra { pos: <0, 1, -5>, aim: <0, 0, 0>, up: <0, 1, 0>, fov: 50 }
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+light { type: point, pos: <0, 5, 0>, clr: <100, 100, 95>, radius: 0 }
+render { size: 240 180, spp: 2, depth: 6, cautype: ppm }

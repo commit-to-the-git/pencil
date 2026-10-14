@@ -1,0 +1,63 @@
+# bounce_ease.pecl - bouncing sphere with proper bounce easing.
+# the sphere actually bounces (decelerates going up, accelerates falling).
+
+bg: <10, 12, 16>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <35, 35, 40> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# bouncing sphere with bounce easing
+mat { clr: <90, 40, 20>, spc: 30, shn: 64 }
+sphere {
+  pos: <0, 0.5, 0>
+  rad: 0.6
+  anim {
+    kf {
+      f: 1
+      p: <0, 0.5, 0>
+      e: linear
+    }
+    kf {
+      f: 8
+      p: <0, 2, 0>
+      e: bounce
+    }
+    kf {
+      f: 15
+      p: <0, 0.5, 0>
+      e: linear
+    }
+    kf {
+      f: 22
+      p: <0, 2, 0>
+      e: bounce
+    }
+    kf {
+      f: 30
+      p: <0, 0.5, 0>
+    }
+  }
+}
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.5
+}
+
+render {
+  size: 240 180
+  spp: 1
+  depth: 4
+  fps: 30
+  frames: 30
+}

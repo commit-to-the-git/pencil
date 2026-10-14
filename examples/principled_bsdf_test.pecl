@@ -1,0 +1,37 @@
+# principled bsdf test. row of 4 spheres with different parameter sets.
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0.5, -6>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# 1: metallic mirror
+mat { clr: <80, 80, 80>, typ: principled, metallic: 1.0, rough: 0.0 }
+sphere { pos: <-2.4, 0, 0>, rad: 0.6 }
+
+# 2: glossy metal (rough)
+mat { clr: <80, 30, 30>, typ: principled, metallic: 1.0, rough: 0.5 }
+sphere { pos: <-0.8, 0, 0>, rad: 0.6 }
+
+# 3: clearcoat (car paint look)
+mat { clr: <30, 30, 80>, typ: principled, metallic: 0.0, rough: 0.3, clearcoat: 1.0, cc_gloss: 0.8 }
+sphere { pos: <0.8, 0, 0>, rad: 0.6 }
+
+# 4: plastic diffuse + specular
+mat { clr: <30, 80, 30>, typ: principled, metallic: 0.0, rough: 0.7, spec_amt: 0.8 }
+sphere { pos: <2.4, 0, 0>, rad: 0.6 }
+
+light { type: point, pos: <3, 4, -3>, clr: <100, 100, 95>, radius: 0 }
+
+render {
+  size: 640 360
+  spp: 2
+  depth: 4
+}

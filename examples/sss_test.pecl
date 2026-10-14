@@ -1,0 +1,40 @@
+# sss_test.pecl - subsurface scattering demo.
+# a wax-like sphere with SSS. light from behind should make it glow.
+# the sphere should have a soft warm glow from within.
+
+bg: <5, 6, 9>
+amb: <5, 5, 5>
+
+cmra {
+  pos: <0, 0, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# wax sphere with SSS
+mat {
+  clr: <90, 70, 60>
+  sss: 80
+  sss_r: 0.5
+  sss_c: <100, 60, 30>
+}
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+# light from behind (will scatter through the sphere)
+light {
+  type: point
+  pos:  <0, 2, 3>
+  clr:  <100, 80, 50>
+  radius: 0
+}
+
+render {
+  size: 480 360
+  spp: 2
+  depth: 4
+  sss: true
+}

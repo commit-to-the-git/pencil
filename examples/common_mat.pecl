@@ -1,0 +1,4 @@
+# common_mat.pecl - shared materials for inclusion by other scenes.
+# included via: include { file: "examples/common_mat.pecl" }
+
+mat { clr: <80, 20, 80>, spc: 30, shn: 64 }

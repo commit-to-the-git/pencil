@@ -1,0 +1,42 @@
+# eerie.pecl - eerie atmospheric scene.
+# dark environment, volumetric fog, a single glowing emissive orb
+# in the distance. doom-like mood.
+
+bg: <2, 2, 4>
+amb: <1, 1, 2>
+
+fog {
+  density: 0.15
+  color: <15, 10, 20>
+}
+
+cmra {
+  pos: <0, 1, -8>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 55
+}
+
+# dark ground plane
+mat { clr: <15, 15, 18> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# glowing emissive orb in the distance
+mat { clr: <0, 0, 0>, emt: <300, 240, 150> }
+sphere { pos: <0, 1, 5>, rad: 0.8 }
+
+# a couple dark pillars for silhouette against the glow
+mat { clr: <10, 10, 12> }
+cube { pos: <-2, 0.5, 3>, size: 0.8 }
+cube { pos: <2, 0.5, 3>, size: 0.8 }
+cube { pos: <-3.5, 1, 4>, size: 1.2 }
+cube { pos: <3.5, 1, 4>, size: 1.2 }
+
+# no lights - the orb IS the light source
+# (emissive materials auto-create lights at their position)
+
+render {
+  size: 1280 720
+  spp: 4
+  depth: 8
+}

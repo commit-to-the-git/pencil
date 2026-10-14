@@ -1,0 +1,33 @@
+# texture.pecl - texture mapping demo.
+# a sphere with a procedural checkerboard texture, on a striped plane.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 0, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+# striped plane
+mat { clr: <50, 50, 55>, tex: examples/textures/stripes.png }
+plane { pos: <0, -1.5, 0>, nrm: <0, 1, 0> }
+
+# checker sphere
+mat { clr: <100, 100, 100>, tex: examples/textures/checker.png, spc: 20, shn: 32 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.3
+}
+
+render {
+  size: 640 480
+  spp: 2
+  depth: 4
+}

@@ -1,0 +1,34 @@
+# caustics_test.pecl - caustics from glass sphere.
+# a glass sphere focuses light onto the floor, creating bright caustic patterns.
+# render with --caustics to see the focused light pattern on the floor.
+
+bg: <5, 6, 9>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <50, 50, 55> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# glass sphere - will focus light onto the floor
+mat { clr: <100, 100, 100>, ior: 1.5 }
+sphere { pos: <0, 0, 0>, rad: 1 }
+
+# bright light from above
+light {
+  type: point
+  pos:  <0, 5, 0>
+  clr:  <100, 100, 95>
+  radius: 0
+}
+
+render {
+  size: 480 360
+  spp: 2
+  depth: 6
+}

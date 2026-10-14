@@ -1,0 +1,65 @@
+# bounce.pecl - bouncing sphere animation.
+# a sphere bounces up and down, with a growing/shrinking scale.
+# also demonstrates scale animation.
+
+bg: <10, 12, 16>
+amb: <8, 8, 10>
+
+cmra {
+  pos: <0, 1, -5>
+  aim: <0, 0.5, 0>
+  up:  <0, 1, 0>
+  fov: 50
+}
+
+mat { clr: <35, 35, 40> }
+plane { pos: <0, -1, 0>, nrm: <0, 1, 0> }
+
+# bouncing sphere
+mat { clr: <90, 40, 20>, spc: 30, shn: 64 }
+sphere {
+  pos: <0, 0.5, 0>
+  rad: 0.6
+  anim {
+    kf {
+      f: 1
+      p: <0, 0.5, 0>
+      s: <1, 1, 1>
+    }
+    kf {
+      f: 8
+      p: <0, 2, 0>
+      s: <0.9, 1.1, 0.9>
+    }
+    kf {
+      f: 15
+      p: <0, 0.5, 0>
+      s: <1.2, 0.7, 1.2>
+    }
+    kf {
+      f: 22
+      p: <0, 2, 0>
+      s: <0.9, 1.1, 0.9>
+    }
+    kf {
+      f: 30
+      p: <0, 0.5, 0>
+      s: <1, 1, 1>
+    }
+  }
+}
+
+light {
+  type: point
+  pos:  <4, 6, -4>
+  clr:  <100, 100, 95>
+  radius: 0.5
+}
+
+render {
+  size: 320 240
+  spp: 2
+  depth: 4
+  fps: 30
+  frames: 30
+}
